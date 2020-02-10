@@ -30,26 +30,27 @@ function start(){
 function typing(){
     console.log("typing");
     typeArea.textContent += theText[i];
-
-    if (theText[i]===" "){
-        sound = typespace;
-    } else{
-        if(Math.random>0.5){
-            sound = typekey1; 
-        } else{
-            sound = typekey2;
-        }
-      
-    }
-   
-
-    sound.currentTime =0;
-    sound.play();
+let timeToNextLetter=Math.random()*100+200;
+    
     if (i < theText.length-1){
         i++;
-        setTimeout(typing, 200);
+        setTimeout(typing, timeToNextLetter);
+    }
+    playSound();
+}
+
+function playSound(){
+    if (theText[i] === " ") {
+        sound = typespace;
+    } else {
+        if (Math.random > 0.5) {
+            sound = typekey1;
+        } else {
+            sound = typekey2;
+        }
+
     }
 
-
-    
+    sound.currentTime = 0;
+    sound.play();
 }
