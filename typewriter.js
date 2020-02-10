@@ -2,7 +2,13 @@
 window.addEventListener("load", start);
 
 let theText ="";
-const typeArea = document.querySelector(".typewritten");
+const typeArea = document.querySelectorAll(".typewritten");
+
+
+
+// let typewrittens;
+
+
 const typekey1 = document.querySelector("#typekey1");
 const typekey2 = document.querySelector("#typekey2");
 const typespace = document.querySelector("#typespace");
@@ -15,26 +21,44 @@ const typereturn = document.querySelector("#typereturn");
 
 let sound;
 let i=0;
+let e=0;
+
+
 
 function start(){
-    console.log("start");
+   
+    typeArea.forEach(element => {
+        element.innerText = "";
+    });
+    // typeArea[e].textContent ="";
+  start2();
 
-    theText = typeArea.textContent;
-    theText= theText.split('');
-    console.log("theText", theText );
-    typeArea.textContent ="";
-   setTimeout(typing, 1000);
+}
 
+
+
+function start2(){
+    theText = typeArea[e].textContent;
+    console.log("e ", e);
+    theText = theText.split('');
+    setTimeout(typing, 1000);
 }
 
 function typing(){
     console.log("typing");
-    typeArea.textContent += theText[i];
+   
+    typeArea[e].textContent += theText[i];
 let timeToNextLetter=Math.random()*100+200;
     
     if (i < theText.length-1){
         i++;
         setTimeout(typing, timeToNextLetter);
+    } else if (e < typeArea.length-1){
+        e++;
+        i=0;
+        start2();
+    } else{
+        console.log("lort");
     }
     playSound();
 }
