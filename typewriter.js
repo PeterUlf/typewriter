@@ -16,9 +16,6 @@ const typelast = document.querySelector("#typelast");
 const typereturn = document.querySelector("#typereturn");
 
 
-
-
-
 let sound;
 let i=0;
 let e=0;
@@ -28,7 +25,8 @@ let e=0;
 function start(){
    
     typeArea.forEach(element => {
-        element.innerText = "";
+        element.dataset.text = element.textContent;
+        element.textContent = "";
     });
     // typeArea[e].textContent ="";
   start2();
@@ -38,7 +36,7 @@ function start(){
 
 
 function start2(){
-    theText = typeArea[e].textContent;
+    theText = typeArea[e].dataset.text;
     console.log("e ", e);
     theText = theText.split('');
     setTimeout(typing, 1000);
